@@ -11,9 +11,15 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary:"#964B00",
-        secondary:"#FFD700"
+        primary:"#e0af70",
+        secondary:"#81491f",
+        tertiary:"#301e14",
+        coffe:"#6F4E37"
       },
+      height: {
+        '120': '30rem', // Customize height as needed
+      },
+      
     },
   },
   plugins: [],

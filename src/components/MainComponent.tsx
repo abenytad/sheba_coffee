@@ -1,35 +1,72 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+"use client";
+import Link from 'next/link'; 
+import { FaFacebook, FaInstagram, FaLinkedin, FaTelegram, FaTiktok } from 'react-icons/fa';
+import { SiX } from 'react-icons/si'; 
+import { useEffect, useState } from 'react';
 
 export default function MainComponent() {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = [
+         '/images/bg4.jpg',
+        '/images/bg1.jpg',
+        '/images/bg2.webp',
+        '/images/bg3.jpg',
+       
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 5000); // Change every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [images.length]);
+
     return (
         <div
-            className="w-full h-[calc(100vh-80px)] bg-cover bg-center flex flex-col justify-center items-start p-4 text-left" // Adjust padding for mobile
-            style={{ backgroundImage: 'url("/images/bg1.jpg")' }} // Adjust path as needed
+            className="w-full h-[calc(82vh)] bg-cover bg-center flex flex-col justify-center items-center p-4 text-center transition-all duration-1000 ease-in-out"
+            style={{
+                backgroundImage: `url(${images[currentImageIndex]})`,
+                backgroundAttachment: 'fixed', // Make background image sticky
+                backgroundPosition: 'center', // Center the image
+                backgroundRepeat: 'no-repeat', // Prevent image from repeating
+                backgroundSize: 'cover', // Cover the entire area
+            }}
         >
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-3"> {/* Smaller title size for mobile */}
-                Welcome to Our Page
-            </h1>
-
-            {/* Description */}
-            <p className="text-base md:text-lg text-secondary mb-4"> {/* Smaller paragraph size for mobile */}
-                We offer the best services in town. Join us and follow our journey.
-            </p>
+            {/* Sheba Coffee Slogan Section */}
+            <div className="flex flex-col items-center mt-8 md:mt-16">
+                <div className="flex items-center space-x-4">
+                    <div className="w-16 h-[2px] bg-[#F5DEB3] md:w-20 lg:w-24"></div> {/* Responsive width reduced */}
+                    <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-[#FFFFFF]">
+                        Sheba Coffee
+                    </h2>
+                    <div className="w-16 h-[2px] bg-[#F5DEB3] md:w-20 lg:w-24"></div> {/* Responsive width reduced */}
+                </div>
+                <p className="text-xl md:text-2xl lg:text-4xl text-[#FFFFFF] mt-4">
+                    The Queen’s Brew from the Heart of Ethiopia
+                </p>
+            </div>
 
             {/* Social Media Icons */}
-            <div className="flex space-x-4 mt-3">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <FaFacebook className="text-primary hover:text-secondary w-6 h-6 md:w-8 md:h-8" /> {/* Adjusted icon size for mobile */}
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <FaTwitter className="text-primary hover:text-secondary w-6 h-6 md:w-8 md:h-8" /> {/* Adjusted icon size for mobile */}
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="text-primary hover:text-secondary w-6 h-6 md:w-8 md:h-8" /> {/* Adjusted icon size for mobile */}
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="text-primary hover:text-secondary w-6 h-6 md:w-8 md:h-8" /> {/* Adjusted icon size for mobile */}
-                </a>
+            <div className="flex space-x-4 mt-8 justify-center flex-wrap"> {/* Added flex-wrap for responsiveness */}
+                <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <FaFacebook className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
+                <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <FaInstagram className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
+                <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
+                <Link href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                    <FaTiktok className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
+                <Link href="https://telegram.org" target="_blank" rel="noopener noreferrer">
+                    <FaTelegram className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
+                <Link href="https://x.com" target="_blank" rel="noopener noreferrer">
+                    <SiX className="text-[#F5DEB3] hover:text-coffe w-8 h-8 md:w-10 md:h-10" />
+                </Link>
             </div>
         </div>
     );

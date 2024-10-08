@@ -59,22 +59,22 @@ export default function CoffesComponent() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 text-center">
                 Our Best Selling Coffees
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-screen-xl px-2"> {/* Adjusted gap for mobile view */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 w-full max-w-screen-xl px-2">
                 {coffees.map(coffee => (
-                    <div key={coffee.id} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div key={coffee.id} className="bg-primary shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 h-120"> {/* Removed rounded class */}
                         <Image 
                             src={coffee.imageUrl} 
                             alt={coffee.name} 
                             width={400}  // Adjust the width as needed
-                            height={300} // Adjust the height as needed for responsive design
-                            className="w-full h-56 object-cover" // Increased height
+                            height={650} // Height for the image
+                            className="w-full h-80 object-cover" // Image height
                         />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold mb-2">{coffee.name}</h3>
-                            <p className="text-gray-600 mb-2">{coffee.description}</p>
+                            <p className="text-secondary mb-2 text-sm md:text-base">{coffee.description}</p> {/* Adjusted description font size */}
                             <div className="flex items-center justify-between">
-                                <span className="text-gray-400 line-through">{coffee.oldPrice}</span>
-                                <span className="text-xl font-bold text-primary">{coffee.newPrice}</span>
+                                <span className="text-secondary line-through text-sm md:text-base">{coffee.oldPrice}</span> {/* Adjusted old price font size */}
+                                <span className="text-xl font-bold text-white">{coffee.newPrice}</span>
                             </div>
                         </div>
                     </div>

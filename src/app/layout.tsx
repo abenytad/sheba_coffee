@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import SlidingBanner from "@/components/SlidingBanner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,16 +24,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable}`}>
+        {/* Sliding Banner and Header */}
+        <SlidingBanner />
         <Header />
-        <div className="min-h-screen">{children}</div> {/* Ensure the main content is below the header */}
+        
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
